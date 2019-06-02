@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>ik</title>
+</head>
+<body>
+<form action="/" method="POST">
+    Find: <input type="text" name="find" />
+    <input type="submit" value="find">
+</form>
+<p></p>
+{% if flag == 1 %}
+{% for i in answer %}
+{% if i["post_type"] == "post" %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Post</h5>
+    <h6 class="card-subtitle mb-2 text-muted">LIKES: {{ i['likes']['count'] }}</h6>
+    <p class="card-text">{{ i['text'] }}</p>
+    <a href="https://vk.com/{{ i['key'] }}" class="card-link">Ссылка на группу</a>
+      <a href="https://vk.com/{{ i['key'] }}?w=wall{{ i['owner_id'] }}_{{ i['id'] }}" class="card-link">Ссылка на пост</a>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if flag == 0 %}
+<h1>Ничего не найдено</h1>
+{% endif %}
+</body>
+</html>
